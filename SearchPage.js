@@ -43,7 +43,7 @@ export default class SearchPage extends Component {
     this.setState({ isLoading: true });
     fetch(query)
       .then(response => response.json())
-      .then(json => {console.log(json);this._handleResponse(json)})
+      .then(json => {this._handleResponse(json)})
       .catch(error =>
         this.setState({
           isLoading: false,
@@ -58,7 +58,7 @@ export default class SearchPage extends Component {
     });
     if (response.length > 0) {
       this.props.navigator.push({
-        title: "Results",
+        title: "Ingreso de Demográficos y Examen Físico",
         component: SearchResults,
         passProps: {
           listings: response[0]

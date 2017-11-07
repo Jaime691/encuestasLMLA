@@ -7,37 +7,68 @@ import {
   View,
   TouchableHighlight,
   FlatList,
-  Text
+  Text,
+  Button,
+  PickerIOS
 } from "react-native";
-
+import SurveyPage from "./SurveyPage";
 
 export default class SearchResults extends Component {
+  _onPressStart = () => {
+    console.log('button pressed')
+    this.props.navigator.push({
+      title: "Encuesta",
+      component: SurveyPage
+    });
+  };
+
   render() {
-      console.log(this.props.listings);
-      const {nombres,apellido1
-,apellido2
-,cedula
-,direccion
-,email
-,empresa
-,fechanat
-,genero
-,receptor} = this.props.listings;
-      console.log(nombres);
-    return <View style={styles.container}>
-          <Text style={{ fontSize: 15, color: "black" }} >
-          {nombres}
+    const {
+      nombres,
+      apellido1,
+      apellido2,
+      cedula,
+      direccion,
+      email,
+      empresa,
+      fechanat,
+      genero,
+      receptor
+    } = this.props.listings;
+
+    return (
+      <View style={styles.container}>
+        <Text style={{ fontSize: 15, color: "black" }}>Nombre: {nombres}</Text>
+        <Text style={{ fontSize: 15, color: "black" }}>
+          Apellido 1: {apellido1}
         </Text>
-        <Text style={{ fontSize: 15, color: "black" }}>{apellido1}</Text>
-        <Text style={{ fontSize: 15, color: "black" }}>{apellido2}</Text>
-        <Text style={{ fontSize: 15, color: "black" }}>{cedula}</Text>
-        <Text style={{ fontSize: 15, color: "black" }}>{direccion}</Text>
-        <Text style={{ fontSize: 15, color: "black" }}>{email}</Text>
-        <Text style={{ fontSize: 15, color: "black" }}>{empresa}</Text>
-        <Text style={{ fontSize: 15, color: "black" }}>{fechanat}</Text>
-        <Text style={{ fontSize: 15, color: "black" }}>{genero}</Text>
-        <Text style={{ fontSize: 15, color: "black" }}>{receptor}</Text>
-      </View>;
+        <Text style={{ fontSize: 15, color: "black" }}>
+          Apellido 2: {apellido2}
+        </Text>
+        <Text style={{ fontSize: 15, color: "black" }}>Cedula: {cedula}</Text>
+        <Text style={{ fontSize: 15, color: "black" }}>
+          Dirección: {direccion}
+        </Text>
+        <Text style={{ fontSize: 15, color: "black" }}>Email: {email}</Text>
+        <Text style={{ fontSize: 15, color: "black" }}>Empresa: {empresa}</Text>
+        <Text style={{ fontSize: 15, color: "black" }}>
+          Fecha de nacimiento: {fechanat}
+        </Text>
+        <Text style={{ fontSize: 15, color: "black" }}>Genero: {genero}</Text>
+        <Text style={{ fontSize: 15, color: "black" }}>
+          Receptor: {receptor}
+        </Text>
+        <View style={styles.flowRight}>
+          {/* <Button color="#48BBEC" title="Guardar" /> */}
+          <Button
+            onPress={this._onPressStart}
+            color="#48BBEC"
+            title="Iniciar"
+          />
+          <Button onPress={() => {}} color="#48BBEC" title="Salir" />
+        </View>
+      </View>
+    );
   }
 }
 const styles = StyleSheet.create({
@@ -66,9 +97,15 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     padding: 10
   },
-    container: {
+  container: {
     padding: 30,
     marginTop: 65,
     alignItems: "flex-start"
   },
+  flowRight: {
+    flexDirection: "row",
+    alignItems: "center",
+    // alignSelf: "stretch"
+    borderColor: "#656565"
+  }
 });
